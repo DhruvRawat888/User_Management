@@ -1,0 +1,88 @@
+﻿@model User_Management.Data.UserLogin
+
+@{
+    ViewData["Title"] = "Signup";
+    Layout = "~/Views/Shared/_Layout_modified.cshtml";
+}
+
+<div class="container">
+
+<div class="d-flex justify-content-center h-100">
+    <div class="card">
+        <div class="card-header">
+            <h3>Sign-Up</h3>
+        </div>
+
+        <div class="card-body">
+            @using(Html.BeginForm("Signup","Registration",FormMethod.Post))
+            {
+                if(ViewBag.Status!=null)
+                {
+                    if(ViewBag.Status==1)
+                    {
+                        <span class="alert alert-success">Registered Successfully</span>
+                        <br /><br />
+                    }
+                        else if (ViewBag.Status == 0)
+                        {
+                            <span class="alert alert-danger">Error!!! While Registration</span>
+                            <br /> <br />
+                        }
+                }
+                <div >
+                    <span>First Name :</span>
+
+                        <span>@Html.TextBoxFor(m=>m.FirstName,new{@class="form-control",@placeholder="First Name"})</span>
+                </div>
+
+                <div >
+                   Last Name :
+                    @Html.TextBoxFor(m=>m.LastName,new{@class="form-control",@placeholder="Last Name"})
+                </div>
+
+                <div >
+                    Date Of Birth :
+                        @Html.EditorFor(m=>m.Dob,new{ @type = "date",@class="form-control",@placeholder="Date Of Birth"})
+                       
+                </div>
+
+
+                <div>
+                    Gender :
+                    <div>
+                    </div>
+                    <select name="Gender" class="form-control">
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                    </select>
+                </div>
+
+                <div >
+                   Email Address :
+                    @Html.TextBoxFor(m=>m.EmailAddress,new{@class="form-control",@placeholder="Email Address"})
+                </div>
+
+
+
+                <div>
+                    Password :
+                    @Html.PasswordFor(m=>m.Password,new{@class="form-control",@placeholder="Password"})
+                </div>
+
+
+            <div>
+                
+                <input type="submit" value="Register" class="btn float-right" >
+                 <input type="reset" value="Cancel" class="btn float-right" >
+            </div>
+
+                }
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-center links">
+                    Have an account already?<a href="https://localhost:7295/">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
